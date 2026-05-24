@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "timesheet",
+  "version": "1.1.0",
+  "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data via the @timesheet/cli command-line tool",
+  "author": {
+    "name": "Timesheet.io",
+    "email": "support@timesheet.io"
+  },
+  "homepage": "https://timesheet.io",
+  "repository": "https://github.com/timesheetIO/timesheet",
+  "license": "MIT",
+  "keywords": [
+    "timesheet",
+    "time-tracking",
+    "productivity",
+    "cli"
+  ]
+}
