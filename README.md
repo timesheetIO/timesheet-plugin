@@ -29,11 +29,11 @@ export TIMESHEET_API_KEY=ts_your.apikey
 **Recommended: install from the plugin marketplace.**
 
 ```
-/plugin marketplace add timesheetIO/timesheet
+/plugin marketplace add timesheetIO/timesheet-plugin
 /plugin install timesheet@timesheet
 ```
 
-The marketplace manifest lives at the repo root; the plugin source is `tools/skills/timesheet-plugin`. Claude Code resolves the `git-subdir` source and pulls in the skill.
+This repository is a self-contained marketplace: `.claude-plugin/marketplace.json` lists a single plugin whose source is the repo root, so adding the marketplace and installing the plugin pulls in the skill directly.
 
 **Or install from the bundled CLI** (no Git access required):
 
@@ -129,10 +129,11 @@ Any tool that reads a single `SKILL.md` with YAML frontmatter can consume the sk
 ```
 timesheet-plugin/
 ├── .claude-plugin/
-│   └── plugin.json     # Claude Code plugin manifest
+│   ├── marketplace.json  # marketplace catalog (one plugin, source ".")
+│   └── plugin.json       # Claude Code plugin manifest
 ├── skills/
 │   └── timesheet/
-│       └── SKILL.md    # YAML frontmatter + command reference
+│       └── SKILL.md      # YAML frontmatter + command reference
 └── README.md
 ```
 

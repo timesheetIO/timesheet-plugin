@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "timesheet",
+  "description": "Official Claude Code plugins published by timesheet.io",
+  "owner": {
+    "name": "Timesheet.io",
+    "email": "support@timesheet.io"
+  },
+  "plugins": [
+    {
+      "name": "timesheet",
+      "displayName": "Timesheet",
+      "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data via the @timesheet/cli command-line tool",
+      "version": "1.1.0",
+      "source": ".",
+      "homepage": "https://timesheet.io",
+      "repository": "https://github.com/timesheetIO/timesheet-plugin",
+      "license": "MIT",
+      "keywords": [
+        "timesheet",
+        "time-tracking",
+        "productivity",
+        "cli"
+      ],
+      "category": "productivity"
+    }
+  ]
+}
