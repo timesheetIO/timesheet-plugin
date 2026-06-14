@@ -1,5 +1,7 @@
 # Timesheet CLI Skill
 
+[![skills.sh](https://skills.sh/b/timesheetIO/timesheet-plugin)](https://skills.sh/timesheetIO/timesheet-plugin)
+
 A Claude Code plugin (and portable agentic skill) for controlling [timesheet.io](https://timesheet.io) time tracking through the `@timesheet/cli` command-line tool. The skill gives any skills-aware agent (Claude Code, Clawdbot, or anything that loads `SKILL.md` files) structured knowledge of every CLI command, flag, and common workflow.
 
 ## Prerequisites
@@ -78,6 +80,14 @@ Or register via `extraDirs` in `~/.clawdbot/clawdbot.json`:
     }
   }
 }
+```
+
+### Any agent (skills.sh CLI)
+
+Install into any supported agent (Claude Code, Codex, Cursor, OpenCode, and more) with the [`skills`](https://github.com/vercel-labs/skills) CLI:
+
+```bash
+npx skills add timesheetIO/timesheet-plugin
 ```
 
 ### Other agents
