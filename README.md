@@ -24,10 +24,10 @@ Authenticate once via OAuth:
 timesheet auth login
 ```
 
-Or set an API key for automation:
+For automation, store an API key in the CLI instead:
 
 ```bash
-export TIMESHEET_API_KEY=ts_your.apikey
+timesheet auth apikey --set <your-api-key>
 ```
 
 ## Installation
@@ -178,24 +178,7 @@ timesheet-plugin/
 
 ## Configuration
 
-Configure environment per agent. Example for Clawdbot:
-
-```json
-{
-  "skills": {
-    "entries": {
-      "timesheet": {
-        "enabled": true,
-        "env": {
-          "TIMESHEET_API_KEY": "ts_your.apikey"
-        }
-      }
-    }
-  }
-}
-```
-
-For Claude Code, export `TIMESHEET_API_KEY` in your shell profile or rely on `timesheet auth login`.
+The skill needs no configuration of its own. The CLI keeps its sign-in in `~/.timesheet-cli/`, so every agent uses the account you signed in with `timesheet auth login` or the key you stored with `timesheet auth apikey --set`. The connector signs in separately, through the Timesheet sign-in page.
 
 ## Links
 
