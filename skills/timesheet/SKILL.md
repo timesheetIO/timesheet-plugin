@@ -126,7 +126,7 @@ timesheet contracts list -o <org-id> --json [-u <user-id>] [-s <status>] [-q "se
 timesheet contracts show <id> --json
 timesheet contracts create "Contract name" -u <user-id> -o <org-id> \
   [--valid-from YYYY-MM-DD] [--valid-to YYYY-MM-DD] \
-  [--work-days MTWTF--] [--weekly-hours 40] [--daily-hours 8] \
+  [--work-days 1111100] [--weekly-hours 40] [--daily-hours 8] \
   [--salary-type fixed] [--salary-amount 4500] [--salary-currency EUR] \
   [--vacation-days 25] [--country DE] [--timezone Europe/Berlin]
 timesheet contracts update <id> [options]
