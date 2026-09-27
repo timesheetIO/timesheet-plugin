@@ -2,10 +2,13 @@
 
 [![skills.sh](https://skills.sh/b/timesheetIO/timesheet-plugin)](https://skills.sh/timesheetIO/timesheet-plugin)
 
-Track your time in [timesheet.io](https://timesheet.io) from Claude: start and stop timers, log past work, and manage projects, tasks, absences, contracts, expenses, todos, and team data. The plugin has two parts:
+Track your time in [timesheet.io](https://timesheet.io) from Claude: start and stop timers, log past work, and manage projects, tasks, absences, contracts, expenses, todos, and team data. The plugin includes:
 
 - **Timesheet connector**: the Timesheet MCP server at `https://mcp.timesheet.io`. Sign in with your Timesheet account the first time you use it. It works in Claude Code, on claude.ai, and in Cowork, and needs nothing installed.
 - **Timesheet skill**: a portable agentic skill for the `@timesheet/cli` command-line tool. It gives any skills-aware agent (Claude Code, Clawdbot, or anything that loads `SKILL.md` files) structured knowledge of every CLI command, flag, and common workflow.
+- **Commands** for everyday steps: start and stop the timer, check today's hours, log finished work, and see the week. See [Usage](#usage).
+- **Agents**: a reporter that sums up your hours for a period, and a reviewer that checks your entries for gaps, overlaps, and missing descriptions. They run in Claude Code and Cowork.
+- **Session reminders** in Claude Code and Cowork: the plugin notes when each session starts. When your last session in a folder ran 15 minutes or more and no time was logged, it reminds you at the next start. Turn them off with `/plugin configure timesheet@timesheet` or in `/config`.
 
 ## Prerequisites
 
@@ -99,6 +102,23 @@ Any tool that reads a single `SKILL.md` with YAML frontmatter can consume the sk
 
 ## Usage
 
+### Commands
+
+| Command | What it does |
+|---------|--------------|
+| `/timesheet:start [project] [description]` | Starts the timer for a project |
+| `/timesheet:stop [description]` | Stops the timer and saves the entry |
+| `/timesheet:status` | Shows the timer and today's hours |
+| `/timesheet:log [project] [time] [description]` | Adds a finished entry, also for this or the last session |
+| `/timesheet:week [last]` | Shows this week's or last week's hours by project |
+
+### Agents
+
+- `timesheet:reporter` builds a report for a period, with hours by project, billable time, and an optional export.
+- `timesheet:reviewer` checks the entries of a period for gaps, overlaps, missing descriptions, very long entries, and unbilled work. It reports what to fix and changes nothing.
+
+Ask for them in your own words, such as "review my timesheet for last week", or with `@agent-timesheet:reviewer`.
+
 ### As a slash command
 
 ```
@@ -145,6 +165,11 @@ timesheet-plugin/
 │   ├── marketplace.json  # marketplace catalog (one plugin, source ".")
 │   └── plugin.json       # Claude Code plugin manifest
 ├── .mcp.json             # Timesheet connector (MCP server)
+├── agents/               # reporter and reviewer
+├── commands/             # start, stop, status, log, week
+├── hooks/
+│   └── hooks.json        # session reminders
+├── scripts/              # the session reminder scripts
 ├── skills/
 │   └── timesheet/
 │       └── SKILL.md      # YAML frontmatter + command reference
