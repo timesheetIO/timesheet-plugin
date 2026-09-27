@@ -1,12 +1,15 @@
-# Timesheet CLI Skill
+# Timesheet plugin
 
 [![skills.sh](https://skills.sh/b/timesheetIO/timesheet-plugin)](https://skills.sh/timesheetIO/timesheet-plugin)
 
-A Claude Code plugin (and portable agentic skill) for controlling [timesheet.io](https://timesheet.io) time tracking through the `@timesheet/cli` command-line tool. The skill gives any skills-aware agent (Claude Code, Clawdbot, or anything that loads `SKILL.md` files) structured knowledge of every CLI command, flag, and common workflow.
+Track your time in [timesheet.io](https://timesheet.io) from Claude: start and stop timers, log past work, and manage projects, tasks, absences, contracts, expenses, todos, and team data. The plugin has two parts:
+
+- **Timesheet connector**: the Timesheet MCP server at `https://mcp.timesheet.io`. Sign in with your Timesheet account the first time you use it. It works in Claude Code, on claude.ai, and in Cowork, and needs nothing installed.
+- **Timesheet skill**: a portable agentic skill for the `@timesheet/cli` command-line tool. It gives any skills-aware agent (Claude Code, Clawdbot, or anything that loads `SKILL.md` files) structured knowledge of every CLI command, flag, and common workflow.
 
 ## Prerequisites
 
-Install the CLI globally:
+The connector needs only a Timesheet account. For the skill, install the CLI globally:
 
 ```bash
 npm install -g @timesheet/cli
@@ -35,9 +38,9 @@ export TIMESHEET_API_KEY=ts_your.apikey
 /plugin install timesheet@timesheet
 ```
 
-This repository is a self-contained marketplace: `.claude-plugin/marketplace.json` lists a single plugin whose source is the repo root, so adding the marketplace and installing the plugin pulls in the skill directly.
+This repository is a self-contained marketplace: `.claude-plugin/marketplace.json` lists a single plugin whose source is the repo root, so adding the marketplace and installing the plugin pulls in the connector and the skill directly. To sign in, run `/mcp`, select the Timesheet server, and follow the sign-in steps.
 
-**Or install from the bundled CLI** (no Git access required):
+**Or install only the skill from the bundled CLI** (no Git access required):
 
 ```bash
 timesheet skill install            # ~/.claude/skills/timesheet
@@ -45,7 +48,7 @@ timesheet skill install --project  # ./.claude/skills/timesheet
 timesheet skill install --force    # overwrite if present
 ```
 
-**Or copy manually:**
+**Or copy the skill manually:**
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -141,6 +144,7 @@ timesheet-plugin/
 ├── .claude-plugin/
 │   ├── marketplace.json  # marketplace catalog (one plugin, source ".")
 │   └── plugin.json       # Claude Code plugin manifest
+├── .mcp.json             # Timesheet connector (MCP server)
 ├── skills/
 │   └── timesheet/
 │       └── SKILL.md      # YAML frontmatter + command reference
@@ -171,6 +175,7 @@ For Claude Code, export `TIMESHEET_API_KEY` in your shell profile or rely on `ti
 ## Links
 
 - [timesheet.io](https://timesheet.io)
+- [Timesheet MCP server docs](https://docs.timesheet.io/integrations/mcp-server/)
 - [@timesheet/cli on npm](https://www.npmjs.com/package/@timesheet/cli)
 - [Claude Code skills docs](https://docs.claude.com/en/docs/claude-code/skills)
 - [Claude Code plugin marketplaces](https://docs.claude.com/en/docs/claude-code/plugin-marketplaces)

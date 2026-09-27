@@ -10,8 +10,8 @@
     {
       "name": "timesheet",
       "displayName": "Timesheet",
-      "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data via the @timesheet/cli command-line tool",
-      "version": "1.1.0",
+      "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in Timesheet",
+      "version": "1.2.0",
       "source": ".",
       "homepage": "https://timesheet.io",
       "repository": "https://github.com/timesheetIO/timesheet-plugin",
@@ -19,7 +19,12 @@
       "keywords": [
         "timesheet",
         "time-tracking",
+        "timer",
+        "projects",
+        "absences",
+        "expenses",
         "productivity",
+        "mcp",
         "cli"
       ],
       "category": "productivity"

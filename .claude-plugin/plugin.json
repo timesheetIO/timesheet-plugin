@@ -1,19 +1,31 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "timesheet",
-  "version": "1.1.0",
-  "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data via the @timesheet/cli command-line tool",
+  "displayName": "Timesheet",
+  "version": "1.2.0",
+  "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in Timesheet",
   "author": {
     "name": "Timesheet.io",
-    "email": "support@timesheet.io"
+    "email": "support@timesheet.io",
+    "url": "https://timesheet.io"
   },
   "homepage": "https://timesheet.io",
   "repository": "https://github.com/timesheetIO/timesheet-plugin",
   "license": "MIT",
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://docs.timesheet.io/integrations/mcp-server/",
+  "supportUrl": "https://docs.timesheet.io/troubleshooting/",
+  "privacyPolicyUrl": "https://timesheet.io/en/privacy",
+  "termsOfServiceUrl": "https://timesheet.io/en/terms",
   "keywords": [
     "timesheet",
     "time-tracking",
+    "timer",
+    "projects",
+    "absences",
+    "expenses",
     "productivity",
+    "mcp",
     "cli"
   ]
 }
