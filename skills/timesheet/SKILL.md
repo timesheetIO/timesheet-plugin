@@ -1,14 +1,26 @@
 ---
 name: timesheet
-description: Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data via the @timesheet/cli command-line tool
+description: Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in timesheet.io, with the Timesheet connector's tools when they are available and the @timesheet/cli command-line tool otherwise
 user-invocable: true
 homepage: https://timesheet.io
 metadata: {"requires": {"bins": ["timesheet"]}}
 ---
 
-# Timesheet CLI Skill
+# Timesheet Skill
 
-Control [timesheet.io](https://timesheet.io) from the shell. Use `--json` on every read command so output is machine-parseable. Default to non-destructive reads first (status, list, show) before mutating state.
+Control [timesheet.io](https://timesheet.io) through the Timesheet connector or from the shell. Default to non-destructive reads first (status, list, show) before mutating state.
+
+## Connector or CLI
+
+Check your tools first. When the Timesheet connector's tools are available, use them instead of the CLI: they need no install or login, and they also work on claude.ai and in Cowork, where the CLI usually isn't installed.
+
+- Tool names follow `<area>_<action>` in the singular, such as `timer_start`, `task_list`, `project_create`, and `absence_approve`. Hosts may add a prefix, for example `mcp__timesheet__timer_start` in Claude Code. The CLI's `show` is the tool's `get`.
+- Reports map to `statistics_get` for summaries (up to one year per call) and `export_generate` for xlsx, csv, or pdf exports, which it returns as a download URL. Get its `report` type from `export_report_types`.
+- Take parameters from each tool's input schema, not from the CLI flags below. The workflows and rules in this skill still apply: only the call changes.
+
+Use the CLI when the connector isn't available, for local defaults (`timesheet config`), or when an export must be saved as a file on disk. The connector handles sign-in itself, so `timesheet auth` is for the CLI only.
+
+With the CLI, use `--json` on every read command so output is machine-parseable.
 
 ## Global flags
 
@@ -304,6 +316,8 @@ Exit codes:
 - `6` Network error
 
 When a command fails on exit code `3`, prompt the user to re-authenticate before retrying. On `5`, back off before retrying.
+
+With the connector, a failed call returns an error message instead of an exit code. If the connector reports that sign-in is needed, ask the user to reconnect it (in Claude Code: `/mcp`), then retry.
 
 ## Tips
 
