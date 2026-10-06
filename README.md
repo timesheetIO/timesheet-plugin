@@ -164,6 +164,8 @@ timesheet-plugin/
 ├── .claude-plugin/
 │   ├── marketplace.json  # marketplace catalog (one plugin, source ".")
 │   └── plugin.json       # Claude Code plugin manifest
+├── .codex-plugin/
+│   └── plugin.json       # ChatGPT and Codex plugin manifest
 ├── .mcp.json             # Timesheet connector (MCP server)
 ├── agents/               # reporter and reviewer
 ├── commands/             # start, stop, status, log, week

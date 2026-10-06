@@ -1,0 +1,44 @@
+{
+  "name": "timesheet",
+  "version": "1.4.0",
+  "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in Timesheet",
+  "author": {
+    "name": "Timesheet.io",
+    "email": "support@timesheet.io",
+    "url": "https://timesheet.io"
+  },
+  "homepage": "https://docs.timesheet.io/integrations/mcp-server/",
+  "repository": "https://github.com/timesheetIO/timesheet-plugin",
+  "license": "MIT",
+  "keywords": [
+    "timesheet",
+    "time-tracking",
+    "timer",
+    "projects",
+    "absences",
+    "expenses",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Timesheet",
+    "shortDescription": "Track time and manage projects",
+    "longDescription": "Timesheet is a time tracking service for freelancers and teams. This plugin lets you work with your Timesheet account in the conversation:\n\n- Start, pause, and stop the timer, and see what is running.\n- Log finished work with its project, times, and description, and correct past entries.\n- See your hours by day, week, project, or client, and create Excel, CSV, or PDF exports.\n- Manage projects, tags, todos, notes, expenses, and breaks.\n- Request time off, and approve or reject absences when you manage a team.\n- Manage organizations, teams, members, contracts, and rates.\n\nSign in with your Timesheet account the first time you use it. The plugin reads and changes only the data your account can access.",
+    "developerName": "Timesheet - Mobile Time Tracking OG",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://timesheet.io",
+    "supportURL": "https://docs.timesheet.io/troubleshooting/",
+    "privacyPolicyURL": "https://timesheet.io/en/privacy",
+    "termsOfServiceURL": "https://timesheet.io/en/terms",
+    "defaultPrompt": [
+      "How many hours did I track this week?",
+      "Start a timer for one of my projects",
+      "Export last month's hours as a PDF"
+    ],
+    "brandColor": "#FF8800",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png"
+  }
+}
