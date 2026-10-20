@@ -22,7 +22,7 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
-    "displayName": "Timesheet",
+    "displayName": "Timesheet IO - Time Tracker",
     "shortDescription": "Track time and manage projects",
     "longDescription": "Timesheet is a time tracking service for freelancers and teams. This plugin lets you work with your Timesheet account in the conversation:\n\n- Start, pause, and stop the timer, and see what is running.\n- Log finished work with its project, times, and description, and correct past entries.\n- See your hours by day, week, project, or client, and create Excel, CSV, or PDF exports.\n- Manage projects, tags, todos, notes, expenses, and breaks.\n- Request time off, and approve or reject absences when you manage a team.\n- Manage organizations, teams, members, contracts, and rates.\n\nSign in with your Timesheet account the first time you use it. The plugin reads and changes only the data your account can access.",
     "developerName": "Timesheet - Mobile Time Tracking OG",
