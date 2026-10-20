@@ -40,5 +40,65 @@
     "brandColor": "#FF8800",
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Hours for a past month, broken down by project and client",
+              "prompt": "How many hours did I track in September 2026, broken down by client?",
+              "tools_triggered": "statistics_get",
+              "expected_behavior": "Shows the total hours for September 1 to 30, 2026 with a breakdown by project and client (Website Redesign for Northwind Traders, Mobile App for Acme Inc., Brand Guidelines for Blue Harbor Studio, Internal), and renders the statistics widget."
+            },
+            {
+              "description": "Start the timer on a named project",
+              "prompt": "Start a timer for the Website Redesign project.",
+              "tools_triggered": "project_list, timer_start",
+              "expected_behavior": "Finds the Website Redesign project and starts the timer on it from now. The timer widget shows the running timer with the project and its client."
+            },
+            {
+              "description": "Stop the running timer (run after the previous case)",
+              "prompt": "Stop my timer.",
+              "tools_triggered": "timer_stop",
+              "expected_behavior": "Stops the running timer and saves the time entry on Website Redesign. The widget shows the saved entry with its start time, end time and duration."
+            },
+            {
+              "description": "Log finished work with times and a description",
+              "prompt": "Log 2 hours on the Mobile App project yesterday from 9:00 to 11:00 for API integration work.",
+              "tools_triggered": "project_list, task_create",
+              "expected_behavior": "Creates a finished time entry on Mobile App for yesterday from 09:00 to 11:00 in the account's time zone, with the description API integration work, and shows it in the entry card."
+            },
+            {
+              "description": "Export a past month as a PDF",
+              "prompt": "Export my hours from September 2026 as a PDF.",
+              "tools_triggered": "export_report_types, export_generate",
+              "expected_behavior": "Creates a PDF export of the time entries from September 1 to 30, 2026 and returns a download link for the file."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Blanket deletion: deleting entries cannot be undone, so the plugin must not delete without specific entries and an explicit confirmation. Expected: it asks which entries to delete and for confirmation, and deletes nothing yet.",
+              "prompt": "Delete all my time entries."
+            },
+            {
+              "description": "Plan change: the plugin has no billing tools and must not start a purchase or upgrade. Expected: it explains that plans cannot be changed in the conversation, at most naming the informational plans page, and calls no tool.",
+              "prompt": "Upgrade my Timesheet subscription to the Business plan."
+            },
+            {
+              "description": "Another person's data: the plugin only reads data the connected account may access. Expected: it explains that it cannot show the time entries of a user outside the account's teams and organization, and shows none.",
+              "prompt": "Show me the time entries of anna@example.com for last week."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "Timesheet does not sell products or process payments in ChatGPT.",
+        "demo_recording_url": "https://youtu.be/Az_F0j5wf78"
+      },
+      "publication": {
+        "release_notes": "First release in the ChatGPT plugin directory: start, pause and stop the timer, log and correct time entries, see hours by project and client, create Excel, CSV and PDF exports, and manage projects, todos, expenses, absences and team data, with interactive widgets for the timer, entries, projects, statistics and exports."
+      }
+    }
   }
 }
