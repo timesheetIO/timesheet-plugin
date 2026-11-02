@@ -153,7 +153,7 @@ Ask for them in your own words, such as "review my timesheet for last week", or 
 | **Expenses** | list, show, create, update, delete, refund, file-url |
 | **Pauses** | list, show, create, update, delete |
 | **Rates** | list, show, create, update, delete |
-| **Reports** | summary, export |
+| **Reports** | summary, export, types, templates (list/show/create/update/delete/run) |
 | **Profile** | show, update, settings, settings-update |
 | **Config** | show, set, reset |
 
