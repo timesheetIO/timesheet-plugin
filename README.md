@@ -60,6 +60,14 @@ cp -r skills/timesheet ~/.claude/skills/
 
 After install, invoke with `/timesheet` or let the model pick it up from natural-language requests.
 
+### Cursor
+
+`.cursor-plugin/plugin.json` makes this repository a Cursor plugin with the connector, the skill, the commands, and the agents (the session reminders are Claude-only). To install it by hand, clone it into Cursor's local plugin folder and reload the window:
+
+```bash
+git clone https://github.com/timesheetIO/timesheet-plugin ~/.cursor/plugins/local/timesheet
+```
+
 ### Clawdbot
 
 Workspace skills:
@@ -166,6 +174,8 @@ timesheet-plugin/
 │   └── plugin.json       # Claude Code plugin manifest
 ├── .codex-plugin/
 │   └── plugin.json       # ChatGPT and Codex plugin manifest
+├── .cursor-plugin/
+│   └── plugin.json       # Cursor plugin manifest
 ├── .mcp.json             # Timesheet connector (MCP server)
 ├── agents/               # reporter and reviewer
 ├── commands/             # start, stop, status, log, week
@@ -193,4 +203,4 @@ The skill needs no configuration of its own. The CLI keeps its sign-in in `~/.ti
 
 ## License
 
-MIT
+MIT, see [LICENSE.md](LICENSE.md).

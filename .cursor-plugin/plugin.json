@@ -1,0 +1,35 @@
+{
+  "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
+  "name": "timesheet",
+  "displayName": "Timesheet",
+  "version": "1.5.0",
+  "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in Timesheet",
+  "author": {
+    "name": "Timesheet.io",
+    "email": "support@timesheet.io"
+  },
+  "homepage": "https://timesheet.io",
+  "repository": "https://github.com/timesheetIO/timesheet-plugin",
+  "license": "MIT",
+  "logo": "assets/icon.png",
+  "category": "productivity",
+  "keywords": [
+    "timesheet",
+    "time-tracking",
+    "timer",
+    "projects",
+    "absences",
+    "expenses",
+    "productivity",
+    "mcp",
+    "cli"
+  ],
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "commands": "./commands/",
+  "mcpServers": "./.mcp.json",
+  "hooks": {
+    "version": 1,
+    "hooks": {}
+  }
+}
