@@ -8,7 +8,6 @@ Track your time in [timesheet.io](https://timesheet.io) from Claude: start and s
 - **Timesheet skill**: a portable agentic skill for the `@timesheet/cli` command-line tool. It gives any skills-aware agent (Claude Code, Clawdbot, or anything that loads `SKILL.md` files) structured knowledge of every CLI command, flag, and common workflow.
 - **Commands** for everyday steps: start and stop the timer, check today's hours, log finished work, and see the week. See [Usage](#usage).
 - **Agents**: a reporter that sums up your hours for a period, and a reviewer that checks your entries for gaps, overlaps, and missing descriptions. They run in Claude Code and Cowork.
-- **Session reminders** in Claude Code and Cowork: the plugin notes when each session starts. When your last session in a folder ran 15 minutes or more and no time was logged, it reminds you at the next start. Turn them off with `/plugin configure timesheet@timesheet` or in `/config`.
 
 ## Prerequisites
 
@@ -62,7 +61,7 @@ After install, invoke with `/timesheet` or let the model pick it up from natural
 
 ### Cursor
 
-`.cursor-plugin/plugin.json` makes this repository a Cursor plugin with the connector, the skill, the commands, and the agents (the session reminders are Claude-only). To install it by hand, clone it into Cursor's local plugin folder and reload the window:
+`.cursor-plugin/plugin.json` makes this repository a Cursor plugin with the connector, the skill, the commands, and the agents. To install it by hand, clone it into Cursor's local plugin folder and reload the window:
 
 ```bash
 git clone https://github.com/timesheetIO/timesheet-plugin ~/.cursor/plugins/local/timesheet
@@ -179,9 +178,6 @@ timesheet-plugin/
 ├── .mcp.json             # Timesheet connector (MCP server)
 ├── agents/               # reporter and reviewer
 ├── commands/             # start, stop, status, log, week
-├── hooks/
-│   └── hooks.json        # session reminders
-├── scripts/              # the session reminder scripts
 ├── skills/
 │   └── timesheet/
 │       └── SKILL.md      # YAML frontmatter + command reference

@@ -1,6 +1,6 @@
 {
   "name": "timesheet",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in Timesheet",
   "author": {
     "name": "Timesheet.io",
@@ -49,14 +49,14 @@
             {
               "description": "Hours for a past month, broken down by project and client",
               "prompt": "How many hours did I track in September 2026, broken down by client?",
-              "tools_triggered": "statistics_get",
+              "tools_triggered": "show_statistics",
               "expected_behavior": "Shows the total hours for September 1 to 30, 2026 with a breakdown by project and client (Website Redesign for Northwind Traders, Mobile App for Acme Inc., Brand Guidelines for Blue Harbor Studio, Internal), and renders the statistics widget."
             },
             {
               "description": "Start the timer on a named project",
               "prompt": "Start a timer for the Website Redesign project.",
-              "tools_triggered": "project_list, timer_start",
-              "expected_behavior": "Finds the Website Redesign project and starts the timer on it from now. The timer widget shows the running timer with the project and its client."
+              "tools_triggered": "timer_start",
+              "expected_behavior": "Starts the timer on the Website Redesign project from now, in one call that names the project. The timer widget shows the running timer with the project and its client."
             },
             {
               "description": "Stop the running timer (run after the previous case)",
@@ -67,7 +67,7 @@
             {
               "description": "Log finished work with times and a description",
               "prompt": "Log 2 hours on the Mobile App project yesterday from 9:00 to 11:00 for API integration work.",
-              "tools_triggered": "project_list, task_create",
+              "tools_triggered": "task_create",
               "expected_behavior": "Creates a finished time entry on Mobile App for yesterday from 09:00 to 11:00 in the account's time zone, with the description API integration work, and shows it in the entry card."
             },
             {

@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "timesheet",
   "displayName": "Timesheet",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in Timesheet",
   "author": {
     "name": "Timesheet.io",
@@ -27,13 +27,5 @@
     "productivity",
     "mcp",
     "cli"
-  ],
-  "userConfig": {
-    "session_reminders": {
-      "type": "boolean",
-      "title": "Session reminders",
-      "description": "Note when each Claude Code session starts, and remind you at the next start when the last session in the same folder ran 15 minutes or more without any time logged.",
-      "default": true
-    }
-  }
+  ]
 }
