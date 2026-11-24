@@ -1,4 +1,5 @@
 ---
+name: start
 description: Start the Timesheet timer for a project
 argument-hint: "[project] [what you're working on]"
 disable-model-invocation: true

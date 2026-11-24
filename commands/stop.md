@@ -1,4 +1,5 @@
 ---
+name: stop
 description: Stop the running Timesheet timer and save the entry
 argument-hint: "[what you did]"
 disable-model-invocation: true

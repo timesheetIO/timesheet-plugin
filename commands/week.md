@@ -1,4 +1,5 @@
 ---
+name: week
 description: Show this week's hours in Timesheet by project
 argument-hint: "[last]"
 disable-model-invocation: true

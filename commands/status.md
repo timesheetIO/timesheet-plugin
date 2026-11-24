@@ -1,4 +1,5 @@
 ---
+name: status
 description: Show the Timesheet timer and today's hours
 disable-model-invocation: true
 ---

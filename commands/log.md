@@ -1,4 +1,5 @@
 ---
+name: log
 description: Add a finished time entry to Timesheet
 argument-hint: "[project] [date or time range] [what you did]"
 disable-model-invocation: true

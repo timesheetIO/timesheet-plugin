@@ -2,16 +2,22 @@
 
 [![skills.sh](https://skills.sh/b/timesheetIO/timesheet-plugin)](https://skills.sh/timesheetIO/timesheet-plugin)
 
-Track your time in [timesheet.io](https://timesheet.io) from Claude: start and stop timers, log past work, and manage projects, tasks, absences, contracts, expenses, todos, and team data. The plugin includes:
+Track your time in [Timesheet](https://timesheet.io) from your AI agent: start and stop the timer, log finished work, see your hours by project, and manage projects, tasks, absences, contracts, expenses, todos, and team data. The plugin works in Claude Code, Cowork, and Cursor. The skill on its own works in any agent that loads `SKILL.md` files.
 
-- **Timesheet connector**: the Timesheet MCP server at `https://mcp.timesheet.io`. Sign in with your Timesheet account the first time you use it. It works in Claude Code, on claude.ai, and in Cowork, and needs nothing installed.
-- **Timesheet skill**: a portable agentic skill for the `@timesheet/cli` command-line tool. It gives any skills-aware agent (Claude Code, Clawdbot, or anything that loads `SKILL.md` files) structured knowledge of every CLI command, flag, and common workflow.
-- **Commands** for everyday steps: start and stop the timer, check today's hours, log finished work, and see the week. See [Usage](#usage).
-- **Agents**: a reporter that sums up your hours for a period, and a reviewer that checks your entries for gaps, overlaps, and missing descriptions. They run in Claude Code and Cowork.
+## What the plugin contains
+
+| Part | What it does | Works in |
+|------|--------------|----------|
+| **Timesheet connector** | The Timesheet MCP server at `https://mcp.timesheet.io`. It gives the agent tools for the timer, time entries, projects, reports and exports, absences, and team data. It needs nothing installed. | Claude Code, claude.ai, Cowork, Cursor |
+| **Timesheet skill** | Tells the agent how to work with Timesheet: with the connector's tools when they are there, and with the `@timesheet/cli` command-line tool otherwise. | Claude Code, Cowork, Cursor, and any agent that loads skills |
+| **Commands** | Five everyday steps: start and stop the timer, check today's hours, log finished work, and see the week. See [Usage](#usage). | Claude Code, Cowork, Cursor |
+| **Agents** | A reporter that sums up your hours for a period, and a reviewer that checks your entries for gaps, overlaps, and missing descriptions. | Claude Code, Cowork, Cursor |
 
 ## Prerequisites
 
-The connector needs only a Timesheet account. For the skill, install the CLI globally:
+You need a Timesheet account. The connector needs nothing else: you sign in with that account the first time the agent uses it.
+
+The skill also works without the connector, through the Timesheet CLI. For that, install the CLI globally:
 
 ```bash
 npm install -g @timesheet/cli
@@ -61,11 +67,17 @@ After install, invoke with `/timesheet` or let the model pick it up from natural
 
 ### Cursor
 
-`.cursor-plugin/plugin.json` makes this repository a Cursor plugin with the connector, the skill, the commands, and the agents. To install it by hand, clone it into Cursor's local plugin folder and reload the window:
+1. Clone this repository into Cursor's local plugin folder:
 
-```bash
-git clone https://github.com/timesheetIO/timesheet-plugin ~/.cursor/plugins/local/timesheet
-```
+   ```bash
+   git clone https://github.com/timesheetIO/timesheet-plugin ~/.cursor/plugins/local/timesheet
+   ```
+
+2. Restart Cursor, or run **Developer: Reload Window**.
+3. Open **Customize** in the sidebar. Timesheet shows there with its connector, skill, commands, and agents.
+4. Sign in with your Timesheet account when the connector asks for it.
+
+Cursor registers itself with Timesheet when it connects, so there is no API key and no client ID to set.
 
 ### Clawdbot
 
@@ -113,20 +125,22 @@ Any tool that reads a single `SKILL.md` with YAML frontmatter can consume the sk
 
 | Command | What it does |
 |---------|--------------|
-| `/timesheet:start [project] [description]` | Starts the timer for a project |
-| `/timesheet:stop [description]` | Stops the timer and saves the entry |
-| `/timesheet:status` | Shows the timer and today's hours |
-| `/timesheet:log [project] [time] [description]` | Adds a finished entry, also for this or the last session |
-| `/timesheet:week [last]` | Shows this week's or last week's hours by project |
+| `start [project] [description]` | Starts the timer for a project |
+| `stop [description]` | Stops the timer and saves the entry |
+| `status` | Shows the timer and today's hours |
+| `log [project] [time] [description]` | Adds a finished entry, also for this or the last session |
+| `week [last]` | Shows this week's or last week's hours by project |
+
+In Claude Code and Cowork, the commands carry the plugin's name, such as `/timesheet:start Website redesign`. In Cursor, type `/` in the chat and pick the command from the list.
 
 ### Agents
 
-- `timesheet:reporter` builds a report for a period, with hours by project, billable time, and an optional export.
-- `timesheet:reviewer` checks the entries of a period for gaps, overlaps, missing descriptions, very long entries, and unbilled work. It reports what to fix and changes nothing.
+- `reporter` builds a report for a period, with hours by project, billable time, and an optional export.
+- `reviewer` checks the entries of a period for gaps, overlaps, missing descriptions, very long entries, and unbilled work. It reports what to fix and changes nothing.
 
-Ask for them in your own words, such as "review my timesheet for last week", or with `@agent-timesheet:reviewer`.
+Ask for them in your own words, such as "review my timesheet for last week". In Claude Code you can also name one with `@agent-timesheet:reviewer`.
 
-### As a slash command
+### The skill as a slash command
 
 ```
 /timesheet
@@ -142,6 +156,8 @@ Ask for them in your own words, such as "review my timesheet for last week", or 
 - "List my organizations and their members"
 
 ## Capabilities
+
+The table lists the CLI's commands by area. The connector's tools cover the same areas, except sign-in and the CLI's own settings.
 
 | Category | Commands |
 |----------|----------|
@@ -164,18 +180,35 @@ Ask for them in your own words, such as "review my timesheet for last week", or 
 | **Profile** | show, update, settings, settings-update |
 | **Config** | show, set, reset |
 
+## Configuration
+
+The plugin needs no configuration of its own: no API key, no client ID, and no settings file.
+
+- **Connector:** it signs in through the Timesheet sign-in page in your browser (OAuth 2.1 with PKCE). Your agent registers itself with Timesheet, and the plugin holds no key and no secret.
+- **CLI:** it keeps its sign-in in `~/.timesheet-cli/`, so every agent uses the account you signed in with `timesheet auth login` or the key you stored with `timesheet auth apikey --set`.
+
+## Your data
+
+The agent works as the Timesheet user who signed in. It reads and changes only the data that account can access.
+
+The plugin holds no program code: it is Markdown and JSON files and two PNG images. The connector sends the agent's requests to the Timesheet MCP server at `https://mcp.timesheet.io`, which Timesheet runs itself.
+
+- [Privacy policy](https://timesheet.io/en/privacy)
+- [Terms of service](https://timesheet.io/en/terms)
+
 ## Plugin structure
 
 ```
 timesheet-plugin/
 ├── .claude-plugin/
-│   ├── marketplace.json  # marketplace catalog (one plugin, source ".")
+│   ├── marketplace.json  # Claude Code marketplace catalog (one plugin, source ".")
 │   └── plugin.json       # Claude Code plugin manifest
 ├── .codex-plugin/
 │   └── plugin.json       # ChatGPT and Codex plugin manifest
 ├── .cursor-plugin/
 │   └── plugin.json       # Cursor plugin manifest
-├── .mcp.json             # Timesheet connector (MCP server)
+├── .mcp.json             # Timesheet connector for Claude Code, ChatGPT, and Codex
+├── mcp.json              # Timesheet connector for Cursor (the same server)
 ├── agents/               # reporter and reviewer
 ├── commands/             # start, stop, status, log, week
 ├── skills/
@@ -184,15 +217,17 @@ timesheet-plugin/
 └── README.md
 ```
 
-## Configuration
+## Support
 
-The skill needs no configuration of its own. The CLI keeps its sign-in in `~/.timesheet-cli/`, so every agent uses the account you signed in with `timesheet auth login` or the key you stored with `timesheet auth apikey --set`. The connector signs in separately, through the Timesheet sign-in page.
+- [Troubleshooting](https://docs.timesheet.io/troubleshooting/)
+- Email: support@timesheet.io
 
 ## Links
 
 - [timesheet.io](https://timesheet.io)
 - [Timesheet MCP server docs](https://docs.timesheet.io/integrations/mcp-server/)
 - [@timesheet/cli on npm](https://www.npmjs.com/package/@timesheet/cli)
+- [Cursor plugins docs](https://cursor.com/docs/plugins)
 - [Claude Code skills docs](https://docs.claude.com/en/docs/claude-code/skills)
 - [Claude Code plugin marketplaces](https://docs.claude.com/en/docs/claude-code/plugin-marketplaces)
 - [Clawdbot skills docs](https://docs.clawd.bot/tools/skills)
