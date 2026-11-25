@@ -1,7 +1,7 @@
 {
   "name": "timesheet",
   "displayName": "Timesheet",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Track time and manage projects, tasks, absences, contracts, expenses, todos, and team data in Timesheet",
   "author": {
     "name": "Timesheet.io",
